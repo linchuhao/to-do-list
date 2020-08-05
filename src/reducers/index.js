@@ -3,7 +3,7 @@ export default (state = initState, action) => {
     switch (action.type) {
       case 'ADD_ITEM':
         return {
-          items: [...state.items , action.obj]
+          items: [...state.items , action.item]
         }
       case 'DELETE_ITEM':
           console.log(action.index)

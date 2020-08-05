@@ -25,7 +25,7 @@ class InputItems extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-    addItem: (obj) => dispatch({type: 'ADD_ITEM', obj: obj})
+    addItem: (item) => dispatch({type: 'ADD_ITEM', item: item})
 })
 
 
