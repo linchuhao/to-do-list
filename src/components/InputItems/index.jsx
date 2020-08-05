@@ -1,15 +1,28 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import toDoService from '../Axios'
 
 class InputItems extends React.Component {
 
+    componentDidMount(){
+        toDoService.getAllItems()
+            .then(result=>{
+                for(let i=0;i<result.data.length;i++){
+                    this.props.addItem(result.data[i])
+                }
+            })
+    }
 
     handleAdd = () => {
         if (this.input.value === "") {
             alert('Empty, input again')
             return
         }
-        this.props.addItem({"text":this.input.value,"done":false})
+        const data = {"content":this.input.value,"status":false}
+        this.props.addItem(data)
+        toDoService.addTodoItem(data).then(result=>{
+            console.log(result);
+        })
         this.input.value = "";
     }
 

@@ -2,6 +2,7 @@ const initState = {items:[]};
 export default (state = initState, action) => {
     switch (action.type) {
       case 'ADD_ITEM':
+          console.log(action.item)
         return {
           items: [...state.items , action.item]
         }
