@@ -1,14 +1,31 @@
 import axios from 'axios';
+import {createStore} from 'redux'
+import reducers from '../../reducers';
+import {LOADING_TOGGLE} from "../action/actionTypes"
+
+const store = createStore(reducers)
 
 const baseURL = "https://5e9ec500fb467500166c4658.mockapi.io/todos"
 
-const getAllItems = axios.create({baseURL:baseURL});
+const todoApi = axios.create({baseURL:baseURL});
 
-const addTodoItem = (data) => axios.post(baseURL, data);
+const getAllItems = () => todoApi.get('/');
 
-const deleteTodoItem = (id) => axios.delete(baseURL+'/'+ id);
+const addTodoItem = (data) => todoApi.post(baseURL, data);
 
-const updateTodoItem = (id,data) => axios.put(baseURL+'/'+ id, data);
+const deleteTodoItem = (id) => todoApi.delete(`/${id}`);
+
+const updateTodoItem = (id,data) => todoApi.put(`/${id}`, data);
+
+todoApi.interceptors.request.use(req=>{
+    store.dispatch({type:LOADING_TOGGLE,payload :{loading:true}});
+    return req;
+},error=>error)
+
+todoApi.interceptors.response.use(res=>{
+    store.dispatch({type:LOADING_TOGGLE,payload :{loading:false}});
+    return res;
+},error=>error)
 
 export default {
     getAllItems,

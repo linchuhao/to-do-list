@@ -13,6 +13,9 @@ export default (state = initState, action) => {
         console.log(state.items[action.id].status)
         state.items[action.id].status = !state.items[action.id].status;
         return {items:[...state.items]}
+      case 'LOADING_TOGGLE':
+        console.log(action.payload)
+        return state
       default:
         return state
     }
