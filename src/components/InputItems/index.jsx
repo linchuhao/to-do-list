@@ -7,6 +7,7 @@ class InputItems extends React.Component {
     componentDidMount(){
         toDoService.getAllItems()
             .then(result=>{
+                console.log(result.data);
                 for(let i=0;i<result.data.length;i++){
                     this.props.addItem(result.data[i])
                 }
@@ -21,7 +22,6 @@ class InputItems extends React.Component {
         const data = {"content":this.input.value,"status":false}
         this.props.addItem(data)
         toDoService.addTodoItem(data).then(result=>{
-            console.log(result);
         })
         this.input.value = "";
     }

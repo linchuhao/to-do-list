@@ -15,10 +15,10 @@ class TodoList extends React.Component {
                 {
                     this.props.items.map((item, index) => <TodoItem
                         key={index}
-                        id={index}
+                        id={item.id}
+                        index={index}
                         deleteItem={this.props.deleteItem}
                         markItem={this.props.markItem}
-                        value={item}
                         item={item} />)
                 }
             </div>
@@ -32,8 +32,8 @@ const mapStateToProps = (state) => ({
 
 
 const mapDispatchToProps = dispatch => ({
-    deleteItem: (index) => dispatch({type: 'DELETE_ITEM', index: index}),
-    markItem: (index) => dispatch({type: 'MARK_ITEM', index: index})
+    deleteItem: (id) => dispatch({type: 'DELETE_ITEM', id: id}),
+    markItem: (id) => dispatch({type: 'MARK_ITEM', id: id})
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodoList)

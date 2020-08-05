@@ -2,7 +2,6 @@ import React from 'react'
 import TodoItem from '../TodoItem'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import axios from '../Axios'
 
 class DonePage extends React.Component {
     render() {
@@ -13,7 +12,7 @@ class DonePage extends React.Component {
                 <Link to="/finish">Done</Link>
                 {
                     this.props.items.map((item, index) => {
-                        if (item.done) {
+                        if (item.status) {
                             return <TodoItem key={index} id={index}
                                 item={item} 
                                 deleteItem={this.props.deleteItem}
@@ -21,7 +20,7 @@ class DonePage extends React.Component {
                                 />
                         }
                         return null
-                    }).filter(item => item != null)
+                    })
                 }
             </div>
         )
@@ -33,8 +32,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    deleteItem: (index) => dispatch({type: 'DELETE_ITEM', index: index}),
-    markItem: (index) => dispatch({type: 'MARK_ITEM', index: index})
+    deleteItem: (id) => dispatch({type: 'DELETE_ITEM', id: id}),
+    markItem: (id) => dispatch({type: 'MARK_ITEM', id: id})
 })
 
 export default connect(mapStateToProps,mapDispatchToProps)(DonePage)

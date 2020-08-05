@@ -6,7 +6,13 @@ const getAllItems = axios.create({baseURL:baseURL});
 
 const addTodoItem = (data) => axios.post(baseURL, data);
 
+const deleteTodoItem = (id) => axios.delete(baseURL+'/'+ id);
+
+const updateTodoItem = (id,data) => axios.put(baseURL+'/'+ id, data);
+
 export default {
     getAllItems,
-    addTodoItem
+    addTodoItem,
+    updateTodoItem,
+    deleteTodoItem
 };
