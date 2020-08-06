@@ -8,10 +8,9 @@ class TodoItem extends React.Component {
 
     handleDelete = () => {
         console.log(this.props.item.id);
-        this.props.deleteItem(this.props.id)
         toDoService.deleteTodoItem(this.props.id).then(
             result => {
-                console.log('delete')
+                this.props.deleteItem(this.props.id)
             }
         )
     }
@@ -21,7 +20,6 @@ class TodoItem extends React.Component {
         toDoService.updateTodoItem(this.props.id,{id:this.props.id,status:!this.props.item.status }).then(
             result => {
                 this.props.markItem(this.props.index)
-                console.log('mark')
             }
         )
     }

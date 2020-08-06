@@ -1,5 +1,5 @@
 import React from 'react'
-import { connect } from 'react-redux'
+
 import toDoService from '../Axios'
 import { Input } from 'antd';
 const { Search } = Input;
@@ -9,6 +9,7 @@ class InputItems extends React.Component {
     componentDidMount() {
         toDoService.getAllItems()
             .then(result => {
+                //TODO 
                 for (let i = 0; i < result.data.length; i++) {
                     this.props.addItem(result.data[i])
                 }
@@ -30,11 +31,12 @@ class InputItems extends React.Component {
     render() {
         return (
             <div>
+                {/* TODO srarch  */}
                 {/* <input type="text" ref={input => this.input = input} />
                 <button onClick={this.handleAdd.bind(this)}>Add</button> */}
                 <Search type="text"
                     placeholder="input todo event"
-                    enterButton="Add" onSearch={(value) => this.handleAdd(value)}
+                    enterButton="Add" onSearch={this.handleAdd}
                     style={{ width: 400 }}
                 />
             </div>
@@ -43,9 +45,6 @@ class InputItems extends React.Component {
 
 }
 
-const mapDispatchToProps = dispatch => ({
-    addItem: (item) => dispatch({ type: 'ADD_ITEM', item: item })
-})
 
 
-export default connect(null, mapDispatchToProps)(InputItems)
+export default InputItems

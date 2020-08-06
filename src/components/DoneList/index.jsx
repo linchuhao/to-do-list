@@ -13,7 +13,7 @@ class DonePage extends React.Component {
                 {
                     this.props.items.map((item, index) => {
                         if (item.status) {
-                            return <TodoItem key={index} id={index}
+                            return <TodoItem key={index}
                                 item={item} 
                                 deleteItem={this.props.deleteItem}
                                 markItem={this.props.markItem}

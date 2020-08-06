@@ -2,13 +2,14 @@ import React from 'react'
 import InputItems from '../InputItems'
 import TodoList from '../TodoList'
 import { Link } from 'react-router-dom'
-import { Row, Col,Menu } from 'antd';
-class TodoPage extends React.Component{
+import { Row, Col, Menu } from 'antd';
+import { connect } from 'react-redux'
+class TodoPage extends React.Component {
 
-    render(){
+    render() {
         return (
             <div>
-                <Menu mode="horizontal" style={{textAlign:'center'}}>
+                <Menu mode="horizontal" style={{ textAlign: 'center' }}>
                     <Menu.Item key="mail">
                         <Link to="/">TodoPage</Link>
                     </Menu.Item>
@@ -18,12 +19,25 @@ class TodoPage extends React.Component{
                 </Menu>
                 <br></br>
                 <Row>
-                <Col span={24}><InputItems /></Col>
+                    <Col span={24}><InputItems addItem={this.props.addItem} /></Col>
                 </Row>
-                <TodoList />
+                <TodoList markItem={this.props.markItem}
+                    deleteItem={this.props.deleteItem}
+                />
             </div>
         )
     }
 
 }
-export default TodoPage
+
+const mapStateToProps = (state) => ({
+    items: state.items
+})
+
+const mapDispatchToProps = dispatch => ({
+    deleteItem: (id) => dispatch({ type: 'DELETE_ITEM', id: id }),
+    markItem: (id) => dispatch({ type: 'MARK_ITEM', id: id }),
+    addItem: (item) => dispatch({ type: 'ADD_ITEM', item: item })
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(TodoPage)
