@@ -36,7 +36,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = dispatch => ({
     deleteItem: (id) => dispatch({ type: 'DELETE_ITEM', id: id }),
-    markItem: (id) => dispatch({ type: 'MARK_ITEM', id: id }),
+    markItem: (item) => dispatch({ type: 'MARK_ITEM', item: item }),
     addItem: (item) => dispatch({ type: 'ADD_ITEM', item: item })
 })
 

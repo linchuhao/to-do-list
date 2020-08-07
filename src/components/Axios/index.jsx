@@ -5,7 +5,7 @@ import {LOADING_TOGGLE} from "../action/actionTypes"
 
 const store = createStore(reducers)
 
-const baseURL = "https://5e9ec500fb467500166c4658.mockapi.io/todos"
+const baseURL = "http://localhost:8080/todoitems"
 
 const todoApi = axios.create({baseURL:baseURL});
 

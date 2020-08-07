@@ -17,7 +17,7 @@ class TodoItem extends React.Component {
 
     handleMark = () => {
         console.log(this.props.item.id);
-        toDoService.updateTodoItem(this.props.id,{id:this.props.id,status:!this.props.item.status }).then(
+        toDoService.updateTodoItem(this.props.item.id,this.props.item).then(
             result => {
                 this.props.markItem(this.props.index)
             }

@@ -10,6 +10,7 @@ class InputItems extends React.Component {
         toDoService.getAllItems()
             .then(result => {
                 //TODO 
+                console.log(result.data)
                 for (let i = 0; i < result.data.length; i++) {
                     this.props.addItem(result.data[i])
                 }
